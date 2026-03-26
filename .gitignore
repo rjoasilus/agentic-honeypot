@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+*.sqlite3
+*.db
+.env
+.DS_Store
+.ipynb_checkpoints/
+data/raw/*.jsonl
+data/processed/*.csv
+
+*.egg-info/
+
+*.sqlite3-shm
+*.sqlite3-wal
+models/artifacts/*.joblib

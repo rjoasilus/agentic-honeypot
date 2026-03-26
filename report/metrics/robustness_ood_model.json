@@ -1,0 +1,78 @@
+{
+  "experiment": "ood_model",
+  "rf_f1": 0.3288,
+  "lr_f1": 0.3333,
+  "agent_recall": 0.9733,
+  "rf_report": {
+    "bot": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "human": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "llm_agent": {
+      "precision": 1.0,
+      "recall": 0.9733333333333334,
+      "f1-score": 0.9864864864864865,
+      "support": 75.0
+    },
+    "accuracy": 0.9733333333333334,
+    "macro avg": {
+      "precision": 0.3333333333333333,
+      "recall": 0.3244444444444445,
+      "f1-score": 0.32882882882882886,
+      "support": 75.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 0.9733333333333334,
+      "f1-score": 0.9864864864864864,
+      "support": 75.0
+    }
+  },
+  "lr_report": {
+    "bot": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "human": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "llm_agent": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 75.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 0.3333333333333333,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.3333333333333333,
+      "support": 75.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 75.0
+    }
+  },
+  "class_names": [
+    "bot",
+    "human",
+    "llm_agent"
+  ],
+  "n_sessions": 75
+}

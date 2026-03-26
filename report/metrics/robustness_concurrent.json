@@ -1,0 +1,78 @@
+{
+  "experiment": "concurrent",
+  "rf_f1": 0.9867,
+  "lr_f1": 0.9867,
+  "agent_recall": 0.96,
+  "rf_report": {
+    "bot": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 100.0
+    },
+    "human": {
+      "precision": 0.9615384615384616,
+      "recall": 1.0,
+      "f1-score": 0.9803921568627451,
+      "support": 100.0
+    },
+    "llm_agent": {
+      "precision": 1.0,
+      "recall": 0.96,
+      "f1-score": 0.9795918367346939,
+      "support": 100.0
+    },
+    "accuracy": 0.9866666666666667,
+    "macro avg": {
+      "precision": 0.9871794871794872,
+      "recall": 0.9866666666666667,
+      "f1-score": 0.9866613311991465,
+      "support": 300.0
+    },
+    "weighted avg": {
+      "precision": 0.9871794871794873,
+      "recall": 0.9866666666666667,
+      "f1-score": 0.9866613311991462,
+      "support": 300.0
+    }
+  },
+  "lr_report": {
+    "bot": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 100.0
+    },
+    "human": {
+      "precision": 0.98,
+      "recall": 0.98,
+      "f1-score": 0.98,
+      "support": 100.0
+    },
+    "llm_agent": {
+      "precision": 0.98,
+      "recall": 0.98,
+      "f1-score": 0.98,
+      "support": 100.0
+    },
+    "accuracy": 0.9866666666666667,
+    "macro avg": {
+      "precision": 0.9866666666666667,
+      "recall": 0.9866666666666667,
+      "f1-score": 0.9866666666666667,
+      "support": 300.0
+    },
+    "weighted avg": {
+      "precision": 0.9866666666666667,
+      "recall": 0.9866666666666667,
+      "f1-score": 0.9866666666666667,
+      "support": 300.0
+    }
+  },
+  "class_names": [
+    "bot",
+    "human",
+    "llm_agent"
+  ],
+  "n_sessions": 300
+}

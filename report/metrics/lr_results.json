@@ -1,0 +1,33 @@
+{
+  "bot": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 41.0
+  },
+  "human": {
+    "precision": 1.0,
+    "recall": 0.975,
+    "f1-score": 0.9873417721518988,
+    "support": 40.0
+  },
+  "llm_agent": {
+    "precision": 0.975,
+    "recall": 1.0,
+    "f1-score": 0.9873417721518988,
+    "support": 39.0
+  },
+  "accuracy": 0.9916666666666667,
+  "macro avg": {
+    "precision": 0.9916666666666667,
+    "recall": 0.9916666666666667,
+    "f1-score": 0.9915611814345991,
+    "support": 120.0
+  },
+  "weighted avg": {
+    "precision": 0.9918750000000001,
+    "recall": 0.9916666666666667,
+    "f1-score": 0.9916666666666668,
+    "support": 120.0
+  }
+}

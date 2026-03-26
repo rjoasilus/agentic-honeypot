@@ -1,0 +1,27 @@
+{
+  "baseline": {
+    "rf_f1": 1.0,
+    "lr_f1": 0.9916,
+    "agent_recall": 1.0,
+    "n_sessions": 120
+  },
+  "tarpit": {
+    "rf_f1": 0.9867,
+    "lr_f1": 0.9867,
+    "agent_recall": 0.96,
+    "n_sessions": 150
+  },
+  "concurrent": {
+    "rf_f1": 0.9867,
+    "lr_f1": 0.9867,
+    "agent_recall": 0.96,
+    "n_sessions": 300
+  },
+  "ood_model": {
+    "rf_f1": 0.3288,
+    "lr_f1": 0.3333,
+    "agent_recall": 0.9733,
+    "n_sessions": 75
+  },
+  "ood_prompt": null
+}

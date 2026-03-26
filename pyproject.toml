@@ -1,0 +1,44 @@
+#   Build System 
+# Tells pip to use setuptools as the build backend.
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+#Project Metadata 
+[project]
+name = "agentic-honeypot"
+version = "0.1.0"
+requires-python = ">=3.12"
+description = "Honeypot API for classifying web traffic as human, bot, or LLM agent via behavioral telemetry"
+
+# pip install -e . installs these automatically.
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy",
+    "aiosqlite",
+    "python-dotenv",
+    "httpx",
+    "slowapi",
+    "pandas",
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "matplotlib",
+    "langchain-ollama",
+    "langchain-core",
+    "pytest",
+    "flake8",
+]
+
+#  Package Discovery 
+# Auto-find all packages (dirs with __init__.py) starting from project root.
+# Discovers: api, api.app, api.tests, agents, features, features.tests
+[tool.setuptools.packages.find]
+where = ["."]
+
+#  Pytest Configuration 
+# Centralizes pytest settings so `python -m pytest` works without flags.
+# testpaths tells pytest where to look for test files.
+[tool.pytest.ini_options]
+testpaths = ["api/tests", "features/tests", "models/tests"]
