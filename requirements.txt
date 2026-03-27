@@ -7,7 +7,6 @@ pandas
 numpy
 scikit-learn
 matplotlib
-seaborn
 httpx
 python-dotenv
 pytest
@@ -16,3 +15,4 @@ slowapi
 langchain-ollama
 langchain-core
 aiofiles
+seaborn
