@@ -23,5 +23,10 @@
     "agent_recall": 0.9733,
     "n_sessions": 75
   },
-  "ood_prompt": null
+  "ood_prompt": {
+    "rf_f1": 0.1006,
+    "lr_f1": 0.3258,
+    "agent_recall": 0.1778,
+    "n_sessions": 45
+  }
 }
