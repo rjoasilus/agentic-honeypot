@@ -1,4 +1,4 @@
-# Threat Model -- Agentic Honeypot
+# Threat Model: Agentic Honeypot
 
 ## Actors
 
@@ -24,11 +24,11 @@
 
 ## Detection Scope
 
-This system detects **goal-directed LLM agents** -- agents operating under task pressure with a specific objective to complete. The detectable behavioral signature is a combination of moderate inter-request latency (driven by inference time), high payload entropy (driven by adaptive reasoning toward a goal), and structured endpoint traversal.
+This system detects **goal-directed LLM agents**: agents operating under task pressure with a specific objective to complete. The detectable behavioral signature is a combination of moderate inter-request latency (driven by inference time), high payload entropy (driven by adaptive reasoning toward a goal), and structured endpoint traversal.
 
-Passive or exploratory LLM behavior falls outside this detection boundary. An LLM given a vague or open-ended prompt with no specific goal produces slow, repetitive, low-diversity sessions that the classifier correctly places in the human cluster (82.2% classified as human in the OOD prompt experiment). This is not a failure -- it defines the exact scope of what the system detects: purposeful automated agents actively working toward an objective, such as credential stuffing, systematic API scraping, or automated form traversal.
+Passive or exploratory LLM behavior falls outside this detection boundary. An LLM given a vague or open-ended prompt with no specific goal produces slow, repetitive, low-diversity sessions that the classifier correctly places in the human cluster (82.2% classified as human in the OOD prompt experiment). This is not a failure. It defines the exact scope of what the system detects: purposeful automated agents actively working toward an objective, such as credential stuffing, systematic API scraping, or automated form traversal.
 
-An adaptive adversary that deliberately avoids goal-directed behavior -- browsing passively rather than executing a task sequence -- would evade detection. No single-layer behavioral detection system is evasion-proof. The contribution of this project is proving that the timing-plus-entropy signature can discriminate under controlled conditions and defining precisely where it breaks down.
+An adaptive adversary that deliberately avoids goal-directed behavior (browsing passively rather than executing a task sequence) would evade detection. No single-layer behavioral detection system is evasion-proof. The contribution of this project is proving that the timing-plus-entropy signature can discriminate under controlled conditions and defining precisely where it breaks down.
 
 ## Failure Boundary
 
@@ -58,7 +58,7 @@ Bots are never misclassified under any tested perturbation because three structu
 
 ## Known Limitations (Accepted)
 - **No HTTPS:** Running on localhost only; plaintext is acceptable for local research.
-- **No authentication:** Intentional -- honeypot must remain open to all actor types by design.
+- **No authentication:** Intentional, honeypot must remain open to all actor types by design.
 - **No cloud deployment security:** System is local-only; cloud hardening is out of scope.
 - **Single-machine deployment:** No real network jitter between client and server. The robustness curve quantifies tolerance: the classifier handles sigma=1000ms noise before meaningful degradation and stays above 0.90 at sigma=5000ms.
 
@@ -74,4 +74,5 @@ These directions are documented as research extensions, not pending fixes.
 - **Adaptive adversary experiment:** Test an agent that deliberately randomizes timing, injects artificial pauses, and varies payload structure to mimic human variance. This would measure the cost an attacker must pay to evade detection and whether the structural features still hold under active adversarial strategy.
 - **Hybrid human/agent sessions:** Test sessions where a human begins a task and hands off to an LLM mid-session, or where an LLM-generated plan is executed by a human. These mixed sessions would test whether the classifier can detect partial automation.
 - **Production shadow deployment:** Deploy the honeypot on a real API endpoint, capture actual traffic from unknown sources, and evaluate the classifier on unlabeled data. This is the definitive generalization test but introduces ethics and consent considerations.
+- **Token-cost amplification:** The honeypot controls the content of every response it sends. By designing responses that are structurally verbose (detailed multi-field JSON, numbered verification steps, lengthy but well-formatted error descriptions), the server could force LLM agents to process more tokens per turn, amplifying the inference-driven timing signal. The design constraint is that responses must remain low-friction for real human users. This is feasible because humans and LLMs process complexity differently: humans skim, pattern-match visually, and act on the one relevant field, while LLMs must tokenize and reason through the full response before generating their next action. Responses designed around high token count with low human cognitive load would widen the timing gap without degrading the user experience. This could improve detection of neutral or low-goal agents that currently fall below the detection boundary, since the amplification exploits a property of LLM inference architecture rather than agent intent. The limitation is that this advantage shrinks as inference speeds improve.
 - **Real-time streaming inference:** Replace the batch CSV pipeline with a streaming classifier that evaluates sessions as they arrive, enabling live detection rather than post-hoc analysis.

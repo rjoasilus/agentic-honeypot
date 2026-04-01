@@ -1,5 +1,4 @@
-# Editable Git install with no remote (agentic-honeypot==0.1.0)
--e c:\users\rjoas\agentic-honeypot
+-e git+https://github.com/rjoasilus/agentic-honeypot.git@0a0bc64016ab265a224922ec762f2ba9b40b36fd#egg=agentic_honeypot
 aiofiles==25.1.0
 aiosqlite==0.22.1
 annotated-doc==0.0.4
@@ -59,6 +58,7 @@ six==1.17.0
 slowapi==0.1.9
 SQLAlchemy==2.0.47
 starlette==0.52.1
+statsmodels==0.14.6
 tenacity==9.1.4
 threadpoolctl==3.6.0
 typing-inspection==0.4.2

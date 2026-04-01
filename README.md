@@ -1,9 +1,12 @@
 # Agentic Honeypot (Sybil-Agent)
 
 A FastAPI honeypot that captures behavioral telemetry to classify visitors as:
-- **Human** -- organic, unpredictable browsing
-- **Script Bot** -- mechanical, repetitive automation
-- **LLM Agent** -- AI-driven, goal-oriented exploration
+- **Human**: organic, unpredictable browsing
+- **Script Bot**: mechanical, repetitive automation
+- **LLM Agent**: AI-driven, goal-oriented exploration
+
+## Why This Matters
+LLM-powered agents are increasingly capable of navigating APIs, submitting forms, and completing multi-step workflows autonomously. Traditional bot detection (CAPTCHAs, rate limiting, fingerprinting) was designed for script-based automation and fails to catch these agents because they produce human-like language and adapt to server responses in real time. This project explores a passive behavioral detection approach that requires no user friction: instead of challenging visitors, it observes how they interact with a deceptive API and classifies them based on timing, content diversity, and traversal patterns. The practical applications include credential stuffing detection, automated scraping identification, and preventing AI agents from draining expensive API resources.
 
 ## Research Question
 
@@ -13,9 +16,9 @@ Can timing-based behavioral features reliably distinguish LLM agents from humans
 
 A Random Forest classifier achieves 100% macro F1 on a held-out test set (120 sessions), with zero misclassifications across all three actor types. Logistic Regression reaches 99.16%, confirming that the features carry the discriminative power rather than model complexity. Feature ablation shows two independent classification pathways: timing-only features achieve 100% and structural-only features achieve 99.16%, meaning neither feature set alone is a single point of failure.
 
-Under adversarial conditions, the classifier holds. Tarpitting (replacing rate-limit responses with fake 200s plus 2-5 second delays) drops RF macro F1 by only 1.3% to 0.9867. Bots remain perfectly classified because three structural features -- payload entropy, burstiness, and path repetition -- are timing-independent and provide a redundant classification pathway even when timing is corrupted. Concurrent simulation (all three actor types hitting the server simultaneously) produces the same 0.9867 result with zero additional degradation from load itself.
+Under adversarial conditions, the classifier holds. Tarpitting (replacing rate-limit responses with fake 200s plus 2-5 second delays) drops RF macro F1 by only 1.3% to 0.9867. Bots remain perfectly classified because three structural features (payload entropy, burstiness, and path repetition) are timing-independent and provide a redundant classification pathway even when timing is corrupted. Concurrent simulation (all three actor types hitting the server simultaneously) produces the same 0.9867 result with zero additional degradation from load itself.
 
-The classifier generalizes across LLM architectures. A Mistral agent -- never seen during training -- achieves 97.3% recall, confirming the behavioral signature is model-agnostic rather than specific to Llama 3.
+The classifier generalizes across LLM architectures. A Mistral agent (never seen during training) achieves 97.3% recall, confirming the behavioral signature is model-agnostic rather than specific to Llama 3.
 
 The sharpest finding is the detection boundary. An LLM given a neutral, open-ended prompt with no specific goal gets classified as human 82.2% of the time. The detectable signature belongs specifically to goal-directed LLM agents operating under task pressure, not to LLM reasoning in general. Without a goal, the same model produces slow, repetitive, low-diversity sessions that match the human cluster. This defines the exact scope of the system: it catches purposeful automated agents (credential stuffers, systematic scrapers, task-executing bots), not passive or exploratory LLM use.
 
